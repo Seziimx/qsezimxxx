@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url("images/nozh.jpg") no-repeat center center;
+      background: #2c2c2c; /* серый фон */
       background-size: cover;
       font-family: Arial, sans-serif;
       color: #00ffea;
@@ -98,12 +98,12 @@
 
     // список оружий и фонов
     const weapons = [
-      { img: "ak.jpeg", bg: "nozh.jpg" },
-      { img: "digl.png", bg: "digl_bg.jpg" },
-      { img: "noc.jpeg", bg: "noc_bg.jpg" },
-      { img: "nozh.jpg", bg: "nozh_bg.jpg" }
-    ];
-    let weaponIndex = 0;
+  { img: "ak.jpeg" },
+  { img: "digl.png" },
+  { img: "noc.jpeg" },
+  { img: "nozh.jpg" }
+];
+let weaponIndex = 0;
 
     function updateTimerDisplay() {
       let minutes = Math.floor(time / 60);
@@ -159,4 +159,5 @@
   </script>
 </body>
 </html>
+
 
