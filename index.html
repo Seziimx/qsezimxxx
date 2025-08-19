@@ -7,7 +7,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: url("https://i.ibb.co/qR9X0dL/cs2-bg.jpg") no-repeat center center;
+      background: url("images/nozh.jpg") no-repeat center center;
       background-size: cover;
       font-family: Arial, sans-serif;
       color: #00ffea;
@@ -35,6 +35,13 @@
       margin-top: 20px;
       text-shadow: 0 0 20px #000;
     }
+    .status {
+      font-size: 50px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: yellow;
+      text-shadow: 0 0 20px #000;
+    }
     .controls {
       position: fixed;
       bottom: 20px;
@@ -55,17 +62,21 @@
 </head>
 <body>
   <div class="container">
-    <img id="weapon" src="https://i.ibb.co/fkxGRR4/m4a1.png" width="600">
+    <img id="weapon" src="images/ak.jpeg" width="600">
     <div class="info">
       <div class="timer" id="timer">01:00</div>
       <div class="price" id="price">1500</div>
+      <div class="status" id="status">Без стопа</div>
     </div>
   </div>
 
-  <!-- Панель управления (видна только тебе, можно скрыть через OBS crop) -->
+  <!-- Панель управления -->
   <div class="controls">
     <label>Сумма: <input type="number" id="priceInput" value="1500"></label>
     <button onclick="setPrice()">Изменить сумму</button>
+    <br>
+    <label>Статус: <input type="text" id="statusInput" value="Без стопа"></label>
+    <button onclick="setStatus()">Изменить статус</button>
     <br>
     <button onclick="startTimer()">Старт</button>
     <button onclick="stopTimer()">Стоп</button>
@@ -82,16 +93,17 @@
     const priceInput = document.getElementById("priceInput");
     const timerEl = document.getElementById("timer");
     const weaponEl = document.getElementById("weapon");
+    const statusEl = document.getElementById("status");
+    const statusInput = document.getElementById("statusInput");
 
-background: url("images/cs2-bg.jpg") no-repeat center center;
-<img id="weapon" src="ak.jpeg" width="600">
-  background: url("images/cs2-bg.jpg") no-repeat center center;
-<img id="weapon" src="digl.png" width="600">
-  background: url("images/cs2-bg.jpg") no-repeat center center;
-<img id="weapon" src="noc.jpeg" width="600">
-  background: url("images/cs2-bg.jpg") no-repeat center center;
-<img id="weapon" src="nozh.jpg" width="600">
-
+    // список оружий и фонов
+    const weapons = [
+      { img: "images/ak.jpeg", bg: "images/nozh.jpg" },
+      { img: "images/digl.png", bg: "images/digl_bg.jpg" },
+      { img: "images/noc.jpeg", bg: "images/noc_bg.jpg" },
+      { img: "images/nozh.jpg", bg: "images/nozh_bg.jpg" }
+    ];
+    let weaponIndex = 0;
 
     function updateTimerDisplay() {
       let minutes = Math.floor(time / 60);
@@ -132,9 +144,14 @@ background: url("images/cs2-bg.jpg") no-repeat center center;
       priceEl.textContent = price;
     }
 
+    function setStatus() {
+      statusEl.textContent = statusInput.value;
+    }
+
     function nextWeapon() {
       weaponIndex = (weaponIndex + 1) % weapons.length;
-      weaponEl.src = weapons[weaponIndex];
+      weaponEl.src = weapons[weaponIndex].img;
+      document.body.style.backgroundImage = `url('${weapons[weaponIndex].bg}')`;
       resetTimer();
     }
 
@@ -142,4 +159,3 @@ background: url("images/cs2-bg.jpg") no-repeat center center;
   </script>
 </body>
 </html>
-
